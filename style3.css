@@ -1,0 +1,217 @@
+@charset "utf-8";
+
+#btnAdd {
+  text-transform: uppercase;
+  background: #22b473;
+  border: none;
+  border-radius: 3px;
+  font-weight: bold;
+  color: #fff;
+  padding: 3px 10px;
+  width: auto;
+}
+
+#deleteBtn,
+#edit {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.tasks-parent {
+  margin-top: 5px;
+  width: auto;
+}
+
+html {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+ul {
+  width: 400px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+li {
+  padding: 15px 30px;
+  color: #000;
+}
+
+li span {
+  padding-left: 50px;
+}
+
+/* Basic Style */
+body {
+  background: #fff;
+  color: #333;
+  font-family: Lato, sans-serif;
+}
+
+.container {
+  display: block;
+  width: 400px;
+  margin: 100px auto 0;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+li * {
+  float: left;
+}
+
+input[type="text"] {
+  margin: 10;
+  font-size: 28px;
+  line-height: 18px;
+  height: 30px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  background: #fff;
+  font-family: Lato, sans-serif;
+  color: #888;
+}
+
+fieldset {
+  position: absolute;
+  width: 900px;
+  height: 300px;
+  left: 20%;
+  top: 10%;
+}
+
+#id_person {
+  width: 8px;
+  height: 5px;
+  font-size: 16px;
+  border: none;
+}
+
+#input_name {
+  position: absolute;
+  left: 5%;
+  top: 12%;
+}
+
+#input_app {
+  position: absolute;
+  left: 5%;
+  top: 40%;
+}
+
+#input_apm {
+  position: absolute;
+  left: 5%;
+  top: 65%;
+}
+
+#btnAdd {
+  position: absolute;
+  left: 37%;
+  top: 84%;
+}
+#btnVer {
+  position: absolute;
+  left: 39%;
+  top: 105%;
+}
+
+#h3name {
+  position: absolute;
+  left: 5%;
+  top: 0%;
+}
+
+#h3app {
+  position: absolute;
+  left: 5%;
+  top: 27%;
+}
+
+#h3apm {
+  position: absolute;
+  left: 5%;
+  top: 52%;
+}
+
+.tasks-parent {
+  position: absolute;
+  left: 50%;
+  top: 13%;
+}
+
+#cant_registros {
+  position: absolute;
+  left: 93%;
+  top: 2%;
+}
+
+#cantidad {
+  position: absolute;
+  top: 0%;
+  left: 80%;
+}
+
+/*
+ventana principal
+*/
+.ventana {
+  background: #272727;
+  width: 30%;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 18px;
+  text-align: center;
+  padding: 33px;
+  height: 20%;
+  border-radius: 10px;
+  position: absolute;
+  left: 34%;
+  top: 25%;
+  display: none;
+  z-index: 1;
+}
+
+#btn_aceptar {
+  width: 100px;
+  height: 40px;
+  position: absolute;
+  top: 60%;
+  left: 60%;
+  border-radius: 3px;
+  cursor: pointer;
+  border: none;
+}
+
+#btn_aceptar:hover {
+  background-color: #0093ff;
+}
+
+#btn_cancelar:hover {
+  background-color: #ff7000;
+}
+
+#btn_cancelar {
+  width: 100px;
+  height: 40px;
+  position: absolute;
+  top: 60%;
+  left: 15%;
+  border-radius: 2px;
+  cursor: pointer;
+  border: none;
+}
+
+.tasks-parent .lista {
+  list-style: none;
+}
+
+.tasks-parent .lista li {
+  border-bottom: 1px solid #272727;
+  display: block;
+}
