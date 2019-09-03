@@ -23,7 +23,7 @@ function agregar_persona(list, itemText) {
   var btn_cancelar = document.getElementById("btn_cancelar");
   var btn_aceptar = document.getElementById("btn_aceptar");
 
-  var btnVer = document.getElementById("btnVer");
+  //var btnVer = document.getElementById("btnVer");
 
   var deleteBtn = document.createElement("input");
   deleteBtn.value = "Eliminar";
@@ -34,7 +34,7 @@ function agregar_persona(list, itemText) {
   btn_cancelar.addEventListener("click", cancelar, false);
   btn_aceptar.addEventListener("click", Aceptar);
 
-  btnVer.addEventListener("click", funcion_ver);
+  //btnVer.addEventListener("click", funcion_ver);
 
   listItem.appendChild(span);
   listItem.appendChild(edit);
@@ -90,6 +90,7 @@ btnNew.onclick = function() {
     });
 
     agregar_persona(document.getElementById("todolist"), persona.getFullName());
+    funcion_ver();
     console.log("array", person_array);
   } else if (this.value == "ACTUALIZAR") {
     this.value = "Aceptar";
@@ -115,8 +116,14 @@ btnNew.onclick = function() {
     resultado_busqueda_array.nombre = input_name.value;
     resultado_busqueda_array.app = input_app.value;
     resultado_busqueda_array.apm = input_apm.value;
+    //
     funcion_ver();
 
+    // if (d3.select(".c_figuras").length) {
+    //   funcion_ver();
+    // } else {
+    //   funcion_ver();
+    // }
     console.log("person array", person_array);
     input_name.value = "";
     input_app.value = "";
@@ -151,6 +158,7 @@ function eliminar_persona(nombre) {
   //person_array.splice(persona => persona.id != txt, 1);
 
   console.log(person_array);
+  funcion_ver();
   return document.getElementById(nombre).remove();
 }
 
@@ -207,13 +215,15 @@ var svg = div
   .attr("viewBox", "0 0 500 500")
   .attr("preserveAspectRatio", "none slice");
 
-var s = svg.append("g").classed("c_figuras", true);
+//var s = svg.append("g").classed("c_figuras", true);
 var color = d3.scaleOrdinal(d3.schemeCategory10);
 
 var id_persona_svg;
 var id_span;
 function funcion_ver() {
+  d3.select(".c_figuras").remove();
   var elemtnt = document.getElementsByTagName("li");
+  svg.append("g").classed("c_figuras", true);
   for (var i = 0; i < person_array.length; i += 1) {
     let figuras = d3.select(".c_figuras");
     var rect = figuras.append("g");
