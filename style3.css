@@ -18,20 +18,12 @@
   cursor: pointer;
 }
 
-.tasks-parent {
-  margin-top: 5px;
-  width: auto;
-}
-
 html {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-ul {
-  width: 400px;
-  padding: 0;
-  margin: 0;
-  list-style: none;
+#todolist {
+  width: 300px;
 }
 
 li {
@@ -54,11 +46,6 @@ body {
   display: block;
   width: 400px;
   margin: 100px auto 0;
-}
-
-ul {
-  margin: 0;
-  padding: 0;
 }
 
 li * {
@@ -92,6 +79,13 @@ fieldset {
   border: none;
 }
 
+#search {
+  position: absolute;
+  width: 150px;
+  height: 30px;
+  font-size: 16px;
+  left: 60%;
+}
 #input_name {
   position: absolute;
   left: 5%;
@@ -147,14 +141,14 @@ fieldset {
 
 #cant_registros {
   position: absolute;
-  left: 93%;
+  left: 96%;
   top: 2%;
 }
 
 #cantidad {
   position: absolute;
   top: 0%;
-  left: 80%;
+  left: 83%;
 }
 
 /*

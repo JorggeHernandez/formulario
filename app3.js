@@ -1,4 +1,5 @@
 var id_persona_span;
+
 function agregar_persona(list, itemText) {
   var contador = document.getElementById("cant_registros");
   totalItems++;
@@ -23,6 +24,23 @@ function agregar_persona(list, itemText) {
   var btn_cancelar = document.getElementById("btn_cancelar");
   var btn_aceptar = document.getElementById("btn_aceptar");
 
+  var search = document.getElementById("search"),
+    personas = document.getElementsByTagName("span"),
+    forEach = Array.prototype.forEach;
+
+  search.addEventListener(
+    "keyup",
+    function (e) {
+      var eleccion = this.value;
+
+      forEach.call(personas, function (f) {
+        if (f.innerHTML.toLowerCase().search(eleccion.toLowerCase()) == -1)
+          f.parentNode.style.display = "none";
+        else f.parentNode.style.display = "block";
+      });
+    },
+    false
+  );
   //var btnVer = document.getElementById("btnVer");
 
   var deleteBtn = document.createElement("input");
@@ -40,8 +58,6 @@ function agregar_persona(list, itemText) {
   listItem.appendChild(edit);
   listItem.appendChild(deleteBtn);
   list.appendChild(listItem);
-
-  //limpiar los campos una ve    var contador = document.getElementById("cant_registros");z re
   input_name.value = "";
   var contador = document.getElementById("cant_registros");
   input_app.value = "";
@@ -64,7 +80,7 @@ var persona;
 
 var btnNew = document.getElementById("btnAdd");
 
-btnNew.onclick = function() {
+btnNew.onclick = function () {
   if (this.value == "Aceptar") {
     //variables
     var input_name = document.getElementById("input_name");
@@ -76,7 +92,7 @@ btnNew.onclick = function() {
       nombre: input_name.value,
       app: input_app.value,
       apm: input_apm.value,
-      getFullName: function() {
+      getFullName: function () {
         return this.nombre + " " + this.app + " " + this.apm;
       }
     };
@@ -91,7 +107,6 @@ btnNew.onclick = function() {
 
     agregar_persona(document.getElementById("todolist"), persona.getFullName());
     funcion_ver();
-    console.log("array", person_array);
   } else if (this.value == "ACTUALIZAR") {
     this.value = "Aceptar";
 
@@ -118,13 +133,6 @@ btnNew.onclick = function() {
     resultado_busqueda_array.apm = input_apm.value;
     //
     funcion_ver();
-
-    // if (d3.select(".c_figuras").length) {
-    //   funcion_ver();
-    // } else {
-    //   funcion_ver();
-    // }
-    console.log("person array", person_array);
     input_name.value = "";
     input_app.value = "";
     input_apm.value = "";
@@ -155,15 +163,12 @@ function abrir() {
 
 function eliminar_persona(nombre) {
   person_array = person_array.filter(persona => persona.id != li_id);
-  //person_array.splice(persona => persona.id != txt, 1);
-
-  console.log(person_array);
-  funcion_ver();
   return document.getElementById(nombre).remove();
 }
 
 function procesarEliminacion(callback) {
   callback(valid);
+  funcion_ver();
 }
 
 function Aceptar() {
@@ -192,11 +197,10 @@ function Editar_persona() {
   input_app.value = resultado_busqueda_array.app;
   input_apm.value = resultado_busqueda_array.apm;
   lastUpdatedItemId = item[0].id;
-  console.log(person_array);
 }
 
 function obtiene_objeto_array(id_persona) {
-  var results = person_array.filter(function(res) {
+  var results = person_array.filter(function (res) {
     return res.id == id_persona;
   });
   return results.length > 0 ? results[0] : null;
@@ -214,12 +218,12 @@ var svg = div
   .attr("style", "position: absolute; top: 450px;  left: 100px")
   .attr("viewBox", "0 0 500 500")
   .attr("preserveAspectRatio", "none slice");
-
-//var s = svg.append("g").classed("c_figuras", true);
 var color = d3.scaleOrdinal(d3.schemeCategory10);
 
 var id_persona_svg;
 var id_span;
+var id_svg;
+
 function funcion_ver() {
   d3.select(".c_figuras").remove();
   var elemtnt = document.getElementsByTagName("li");
@@ -241,7 +245,7 @@ function funcion_ver() {
       .attr("dx", 115 + 100 * i)
       .attr("dy", 90)
       .text(person_array[i]["nombre"])
-      .on("click", function() {
+      .on("click", function () {
         btnNew.value = "ACTUALIZAR";
         let this_text = this.parentNode;
         let obtiene_id = this_text.children[1].getAttribute("id");
@@ -251,7 +255,6 @@ function funcion_ver() {
         input_app.value = resultado_busqueda_array.app;
         input_apm.value = resultado_busqueda_array.apm;
         lastUpdatedItemId = obtiene_id;
-        console.log(person_array);
       });
     rect
       .append("text")
@@ -260,24 +263,13 @@ function funcion_ver() {
       .attr("id", elemtnt[i].getAttribute("id"))
       .text("X")
       .style("cursor", "pointer")
-      .on("click", function() {
+      .on("click", function () {
         var pd = this.parentNode;
-        id_persona_svg = pd.children[1].getAttribute("id");
-        id_span = this.id;
-        pro_Eliminacion(eliminar_person);
-        this.parentNode.remove();
+        li_id = pd.children[1].getAttribute("id");
+        valid = this.id;
+        abrir();
+        id_svg = this.parentNode;
+        console.log("id_svg", id_svg)
       });
   }
-}
-function eliminar_person(nombre) {
-  person_array = person_array.filter(persona => persona.id != id_persona_svg);
-  console.log(person_array);
-  var contador = document.getElementById("cant_registros");
-  contador.innerHTML = totalitems-- - 1;
-  console.log("nombre", nombre);
-  return document.getElementById(nombre).remove();
-}
-
-function pro_Eliminacion(callback) {
-  callback(id_span);
 }
