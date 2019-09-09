@@ -1,41 +1,50 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Personas</title>
-    <link rel="stylesheet" href="style3.css" />
-    <script src="public/libs/d3.js"></script>
-  </head>
 
-  <body>
-    <h1>Scope * ** *** * **</h1>
-    <fieldset>
-      <legend>Formulario</legend>
-      <form action="">
-        <input type="text" id="id_person" disabled />
-        <h3 id="h3name">Nombre</h3>
-        <input type="text" id="input_name" />
-        <h3 id="h3app">Apellido Paterno</h3>
-        <input type="text" id="input_app" />
-        <h3 id="h3apm">Apellido Materno</h3>
-        <input type="text" id="input_apm" />
-        <input id="btnAdd" type="button" value="Aceptar" />
+<head>
+  <title>Personas</title>
+  <link rel="stylesheet" href="style3.css" />
+  <script src="public/libs/d3.js"></script>
+</head>
 
-        <input type="search" id="search" placeholder="Buscar persona" />
-      </form>
+<body>
+  <h1>Scope * ** *** * **</h1>
+  <fieldset>
+    <legend>Formulario</legend>
+    <form action="">
+      <input type="text" id="id_person" disabled />
+      <h3 id="h3name">Nombre</h3>
+      <input type="text" id="input_name" />
+      <h3 id="h3app">Apellido Paterno</h3>
+      <input type="text" id="input_app" />
+      <h3 id="h3apm">Apellido Materno</h3>
+      <input type="text" id="input_apm" />
+      <input id="btnAdd" type="button" value="Aceptar" />
 
-      <div class="ventana" id="vent">
-        Desea elminar este registro?
-        <input type="button" id="btn_cancelar" value="cancelar" />
-        <input type="button" id="btn_aceptar" value="Aceptar" />
-      </div>
-      <h2 id="cantidad">Cantidad:</h2>
-      <h3 id="cant_registros">0</h3>
+      <input type="text" id="search" placeholder="Buscar persona" />
+      <input type="button" id="btn_buscar" value="Buscar">
+      <select name="" id="sel_search">
+        <option value="nombre">Nombre</option>
+        <option value="app">Apellido P.</option>
+        <option value="apm">Apellido M.</option>
+      </select>
 
-      <div class="tasks-parent">
-        <ul id="todolist" class="lista"></ul>
-      </div>
-    </fieldset>
-    <div id="div_svg"></div>
-  </body>
-  <script src="app3.js"></script>
+    </form>
+
+    <div class="ventana" id="vent">
+      Desea elminar este registro?
+      <input type="button" id="btn_cancelar" value="cancelar" />
+      <input type="button" id="btn_aceptar" value="Aceptar" />
+    </div>
+    <h2 id="cantidad">Cant.:</h2>
+    <h3 id="cant_registros">0</h3>
+
+    <div class="tasks-parent">
+      <ul id="todolist" class="lista"></ul>
+    </div>
+  </fieldset>
+  <div id="div_svg"></div>
+</body>
+<script src="app3.js"></script>
+
 </html>

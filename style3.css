@@ -23,7 +23,9 @@ html {
 }
 
 #todolist {
-  width: 300px;
+  width: 400px;
+  height: 200px;
+  overflow-y: auto;
 }
 
 li {
@@ -32,7 +34,7 @@ li {
 }
 
 li span {
-  padding-left: 50px;
+  padding-left: 0px;
 }
 
 /* Basic Style */
@@ -78,14 +80,37 @@ fieldset {
   font-size: 16px;
   border: none;
 }
+#sel_search {
+  position: absolute;
+  width: 100px;
+  height: 30px;
+  font-size: 16px;
+  left: 47%;
+}
 
 #search {
   position: absolute;
   width: 150px;
-  height: 30px;
+  height: 20px;
   font-size: 16px;
-  left: 60%;
+  left: 59%;
 }
+#btn_buscar {
+  position: absolute;
+  left: 78%;
+  top: 10%;
+  height: 30px;
+
+  background: #22b473;
+  border: none;
+  border-radius: 3px;
+  font-weight: bold;
+  color: #fff;
+  padding: 3px 10px;
+  width: auto;
+  cursor: pointer;
+}
+
 #input_name {
   position: absolute;
   left: 5%;
@@ -141,14 +166,14 @@ fieldset {
 
 #cant_registros {
   position: absolute;
-  left: 96%;
-  top: 2%;
+  left: 97%;
+  top: 4%;
 }
 
 #cantidad {
   position: absolute;
-  top: 0%;
-  left: 83%;
+  top: 2%;
+  left: 88%;
 }
 
 /*
@@ -206,6 +231,6 @@ ventana principal
 }
 
 .tasks-parent .lista li {
-  border-bottom: 1px solid #272727;
+  border-bottom: 0.5px solid #272727;
   display: block;
 }

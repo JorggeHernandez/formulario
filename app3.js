@@ -1,5 +1,4 @@
 var id_persona_span;
-
 function agregar_persona(list, itemText) {
   var contador = document.getElementById("cant_registros");
   totalItems++;
@@ -7,9 +6,6 @@ function agregar_persona(list, itemText) {
   contador.innerHTML = totalitems;
   var listItem = document.createElement("li");
   listItem.id = "li_" + totalItems;
-  var id_person = "id_" + totalItems;
-  //console.log("id_person", id_person);
-  //   console.log("list item", listItem);
 
   var span = document.createElement("span");
   span.id = id_persona_span;
@@ -25,24 +21,32 @@ function agregar_persona(list, itemText) {
   var btn_aceptar = document.getElementById("btn_aceptar");
 
   var search = document.getElementById("search"),
-    personas = document.getElementsByTagName("span"),
     forEach = Array.prototype.forEach;
 
-  search.addEventListener(
-    "keyup",
-    function (e) {
-      var eleccion = this.value;
+  function obtiene_o(id_persona) {
+    var results = person_array.filter(function(res) {
+      return res.nombre == id_persona;
+    });
+    return results.length > 0 ? results[0] : null;
+  }
+  // var cccc;
+  // console.log(cccc);
+  // search.addEventListener(
+  //   "keyup",
+  //   function(e) {
+  //     cccc = obtiene_o(sel_search.value);
+  //     //var valor = cccc.nombre;
+  //     // console.log("valor", valor);
 
-      forEach.call(personas, function (f) {
-        if (f.innerHTML.toLowerCase().search(eleccion.toLowerCase()) == -1)
-          f.parentNode.style.display = "none";
-        else f.parentNode.style.display = "block";
-      });
-    },
-    false
-  );
-  //var btnVer = document.getElementById("btnVer");
-
+  //     var eleccion = this.value;
+  //     forEach.call(personas, function(f) {
+  //       if (f.innerHTML.toLowerCase().search(eleccion.toLowerCase()) == -1)
+  //         f.parentNode.style.display = "none";
+  //       else f.parentNode.style.display = "block";
+  //     });
+  //   },
+  //   false
+  // );
   var deleteBtn = document.createElement("input");
   deleteBtn.value = "Eliminar";
   deleteBtn.type = "button";
@@ -65,6 +69,40 @@ function agregar_persona(list, itemText) {
   input_apm.value = "";
   var contador = document.getElementById("cant_registros");
 }
+var personas = document.getElementsByTagName("span"),
+  forEach = Array.prototype.forEach;
+//funcion filtro para buscar personas
+var btn_buscar = document.getElementById("btn_buscar");
+btn_buscar.onclick = function() {
+  var search = document.getElementById("search");
+  var sel_search = document.getElementById("sel_search").value;
+
+  if (this.value == "Buscar") {
+    var foundItem = null;
+    for (i = 0; i < person_array.length; i++) {
+      if (person_array[i][sel_search] == search.value) {
+        foundItem = person_array[i];
+        break;
+      }
+    }
+    if (foundItem) {
+      var eleccion = foundItem.nombre;
+      forEach.call(personas, function(f) {
+        if (f.innerHTML.toLowerCase().search(eleccion.toLowerCase()) == -1)
+          f.parentNode.style.display = "none";
+        else f.parentNode.style.display = "block";
+      });
+    }
+    this.value = "Limpiar";
+  } else if (this.value == "Limpiar") {
+    search.value = "";
+    forEach.call(personas, function(f) {
+      f.parentNode.style.display = "block";
+    });
+    this.value = "Buscar";
+  }
+};
+
 var totalItems = 0;
 var totalitems = 0;
 var lastUpdatedItemId = "";
@@ -80,8 +118,8 @@ var persona;
 
 var btnNew = document.getElementById("btnAdd");
 
-btnNew.onclick = function () {
-  if (this.value == "Aceptar") {
+btnNew.onclick = function() {
+  if ((this.value = "Aceptar")) {
     //variables
     var input_name = document.getElementById("input_name");
     var input_app = document.getElementById("input_app");
@@ -92,7 +130,7 @@ btnNew.onclick = function () {
       nombre: input_name.value,
       app: input_app.value,
       apm: input_apm.value,
-      getFullName: function () {
+      getFullName: function() {
         return this.nombre + " " + this.app + " " + this.apm;
       }
     };
@@ -107,6 +145,7 @@ btnNew.onclick = function () {
 
     agregar_persona(document.getElementById("todolist"), persona.getFullName());
     funcion_ver();
+    console.log(person_array);
   } else if (this.value == "ACTUALIZAR") {
     this.value = "Aceptar";
 
@@ -145,15 +184,12 @@ var li_id;
 
 function Sel_para_remover() {
   var li = this.parentNode;
-
   //toma el texto que contiene el elemento span
   text_span = li.children[0].innerHTML;
   //obtengo el id del span
   li_id = li.children[0].getAttribute("id");
   //tomo el id del padre
   valid = li.id;
-
-  //console.log(valid);
   abrir();
 }
 
@@ -200,7 +236,7 @@ function Editar_persona() {
 }
 
 function obtiene_objeto_array(id_persona) {
-  var results = person_array.filter(function (res) {
+  var results = person_array.filter(function(res) {
     return res.id == id_persona;
   });
   return results.length > 0 ? results[0] : null;
@@ -219,10 +255,6 @@ var svg = div
   .attr("viewBox", "0 0 500 500")
   .attr("preserveAspectRatio", "none slice");
 var color = d3.scaleOrdinal(d3.schemeCategory10);
-
-var id_persona_svg;
-var id_span;
-var id_svg;
 
 function funcion_ver() {
   d3.select(".c_figuras").remove();
@@ -245,7 +277,7 @@ function funcion_ver() {
       .attr("dx", 115 + 100 * i)
       .attr("dy", 90)
       .text(person_array[i]["nombre"])
-      .on("click", function () {
+      .on("click", function() {
         btnNew.value = "ACTUALIZAR";
         let this_text = this.parentNode;
         let obtiene_id = this_text.children[1].getAttribute("id");
@@ -263,13 +295,11 @@ function funcion_ver() {
       .attr("id", elemtnt[i].getAttribute("id"))
       .text("X")
       .style("cursor", "pointer")
-      .on("click", function () {
+      .on("click", function() {
         var pd = this.parentNode;
         li_id = pd.children[1].getAttribute("id");
         valid = this.id;
         abrir();
-        id_svg = this.parentNode;
-        console.log("id_svg", id_svg)
       });
   }
 }
